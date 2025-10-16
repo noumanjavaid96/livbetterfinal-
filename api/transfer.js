@@ -8,7 +8,7 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
 
 // --- ⚠️ ACTION REQUIRED ---
-// Ensure these phone numbers are correct and in E.14 format.
+// Ensure these phone numbers are correct and in E.164 format.
 const OFFICE_PHONE_NUMBER = '+16473812401';
 const REMOTE_PCC_NUMBER = '+16473812401';
 // -------------------------
@@ -24,8 +24,8 @@ app.post('/api/transfer', (req, res) => {
 
     try {
         // --- ✅ FIX APPLIED ---
-        // The toolCall object is directly on the request body, not inside a 'message' object.
-        const args = JSON.parse(req.body.toolCall.function.arguments);
+        // The toolCall object is inside req.body.message, as shown in the error log.
+        const args = JSON.parse(req.body.message.toolCall.function.arguments);
         const { fullName, patientStatus, reason } = args;
 
         // --- ✅ ADDED VALIDATION ---
@@ -95,4 +95,3 @@ app.post('/api/handle-first-dial-status', (req, res) => {
 
 // Export the app for Vercel
 module.exports = app;
-
