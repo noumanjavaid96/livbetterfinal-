@@ -1,0 +1,13 @@
+{
+  "name": "livbetter-transfer-server",
+  "version": "1.0.0",
+  "description": "Server-side logic for LivBetter Hearing AI Agent transfers.",
+  "main": "api/transfer.js",
+  "scripts": {
+    "start": "node api/transfer.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "twilio": "^4.19.0"
+  }
+}
